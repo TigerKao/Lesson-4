@@ -1,15 +1,18 @@
 import time
-import random
+import progressbar
 
 data = []
 count = 0
+bar = progressbar.ProgressBar(max_value=1000000)   # 做出progressbar型別的一個物件 bar
+
+# 物件的第一個字是大寫，所以 ProgressBar 是物件，只要寫 Class（類別）就能自己創造一個型別
+
 with open("reviews.txt", "r") as f:
     for line in f:
         data.append(line)
         count += 1
-        if count % 1000 == 0:
-            print(len(data))    
-print("檔案讀取完了，總共有", len(data), "筆資料")
+        bar.update(count) # 使用 bar 這個物件的 update function
+print("檔案讀取完了，總共有", len(data), "筆資料")    # function 的第一個字會是小寫，寫在class裡的function，會被稱呼為method，就不再叫它function
 
 print(data[0])
 
